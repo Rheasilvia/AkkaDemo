@@ -1,7 +1,6 @@
-package com.xiaomi
+package aia.testdriven
 
-import aia.testdriven.StopSystemAfterAll
-import akka.actor.ActorSystem
+import akka.actor.{Actor, ActorSystem}
 import akka.testkit.TestKit
 import org.scalatest.{MustMatchers, WordSpecLike}
 
@@ -15,7 +14,7 @@ import org.scalatest.{MustMatchers, WordSpecLike}
 class SilentActor01Test extends TestKit(ActorSystem("testsystem")) with WordSpecLike
   with MustMatchers
   with StopSystemAfterAll {
-  "A Silment Actor" must {
+  "A Silent Actor" must {
     //每个in 描述一个特定测试
     "change state when it receives a message,single threaded" in {
       fail("not implemented yet")
@@ -23,5 +22,11 @@ class SilentActor01Test extends TestKit(ActorSystem("testsystem")) with WordSpec
     "change state when it receives a message,multi-threaded" in {
       fail("not implemented yet")
     }
+  }
+}
+
+class SilentActor extends Actor {
+  override def receive: Receive = {
+    case msg =>
   }
 }
