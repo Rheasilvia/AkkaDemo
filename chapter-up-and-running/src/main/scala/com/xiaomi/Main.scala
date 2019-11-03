@@ -23,6 +23,7 @@ object Main extends App with RequestTimeout {
 
   //bindAndHandler是异步的，需要隐式执行
   implicit val system = ActorSystem()
+  //  创建akkasystem
   implicit val ec = system.dispatcher
 
   val api = new Rest(system, requestTimeout(config)).routes

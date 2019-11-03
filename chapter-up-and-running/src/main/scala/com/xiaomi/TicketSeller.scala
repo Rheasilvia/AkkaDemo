@@ -15,6 +15,7 @@ object TicketSeller {
 
   case class Ticket(id: Int)
 
+  //默认空票券
   case class Tickets(event: String,
                      entries: Vector[Ticket] = Vector.empty[Ticket])
 
@@ -28,6 +29,7 @@ class TicketSeller(event: String) extends Actor {
 
   import TicketSeller._
 
+  //  ticket由BoxOffice创建，并持有票券列表
   var tickets = Vector.empty[Ticket]
 
   def receive = {

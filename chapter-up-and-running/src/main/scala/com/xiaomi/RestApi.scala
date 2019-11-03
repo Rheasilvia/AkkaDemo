@@ -46,10 +46,13 @@ trait RestRoutes extends BoxOfficeApi
         post {
           // POST /events/:event
           entity(as[EventDescription]) { ed =>
+            //            调用createEvent方法活动，createEvent调用BoxOffice完成活动创建
             onSuccess(createEvent(event, ed.tickets)) {
+              //              执行成功以201Created结束请求
               case BoxOffice.EventCreated(event) => complete(Created, event)
               case BoxOffice.EventExists =>
                 val err = Error(s"$event event exists already.")
+                //                如果活动无法创建，则以400BadRequest完成请求
                 complete(BadRequest, err)
             }
           }
@@ -90,6 +93,7 @@ trait BoxOfficeApi {
 
   import BoxOffice._
 
+  //  ActorSystem返回创建顶层Actor的地址，而不是Actor本身。这个地址称为ActorRef
   def createBoxOffice(): ActorRef
 
   implicit def executionContext: ExecutionContext

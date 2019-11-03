@@ -1,18 +1,23 @@
 package com.xiaomi
 
 import spray.json._
+
 /**
  * @author chenmengjie@xiaomi.com
  * @create 10/23/19
  **/
+//RestApi中使用的活动消息
+//包含活动初始票数消息
 case class EventDescription(tickets: Int) {
   require(tickets > 0)
 }
 
+//包含需求票数的消息
 case class TicketRequest(tickets: Int) {
   require(tickets > 0)
 }
 
+//包含错误的消息
 case class Error(message: String)
 
 
